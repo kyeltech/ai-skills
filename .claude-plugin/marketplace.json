@@ -1,0 +1,23 @@
+{
+  "name": "pakytech",
+  "owner": {
+    "name": "Ezekiel Ayikoe",
+    "url": "https://github.com/PakyTech"
+  },
+  "description": "Agent skills for real engineering, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "ai-skills",
+      "source": "./",
+      "description": "Agent skills for real engineering: grilling, spec/ticket flows, TDD, code review, domain modelling and more.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "tdd",
+        "code-review",
+        "grilling"
+      ]
+    }
+  ]
+}
