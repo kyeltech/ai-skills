@@ -1,6 +1,6 @@
 {
   "name": "ai-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Agent skills for real engineering: grilling, spec/ticket flows, TDD, code review, domain modelling and more. Small, composable, model-agnostic.",
   "author": {
     "name": "Ezekiel Ayikoe",
