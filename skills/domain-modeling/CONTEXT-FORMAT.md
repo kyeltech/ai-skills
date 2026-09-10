@@ -40,9 +40,9 @@ _Avoid_: Client, buyer, account
 
 ## Contexts
 
-- [Ordering](./src/ordering/CONTEXT.md) — receives and tracks customer orders
-- [Billing](./src/billing/CONTEXT.md) — generates invoices and processes payments
-- [Fulfillment](./src/fulfillment/CONTEXT.md) — manages warehouse picking and shipping
+- [Ordering](./packages/ordering/CONTEXT.md) — receives and tracks customer orders
+- [Billing](./services/billing/CONTEXT.md) — generates invoices and processes payments
+- [Fulfillment](./packages/fulfillment/CONTEXT.md) — manages warehouse picking and shipping
 
 ## Relationships
 
@@ -51,10 +51,12 @@ _Avoid_: Client, buyer, account
 - **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
 ```
 
+Each entry's link is the context's real path. Paths vary by repo (`packages/*`, `apps/*`, `services/*`, `libs/*`, `src/*`) and one context may span more than one directory — the map is what makes them findable, so a context missing from the map is invisible to every skill that reads it.
+
 The skill infers which structure applies:
 
 - If `CONTEXT-MAP.md` exists, read it to find contexts
 - If only a root `CONTEXT.md` exists, single context
 - If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
 
-When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.
+When multiple contexts exist, infer which one the current topic relates to, and read only those — not every `CONTEXT.md` in the repo. If unclear, ask.

@@ -184,7 +184,6 @@ skills/
 A skill is just a folder with a `SKILL.md` in it. The frontmatter carries `name`, `description`, and optionally `disable-model-invocation: true` (making it user-invoked) and `argument-hint`. To add one, create the folder, write the file, and add its path to `skills` in `.claude-plugin/plugin.json`.
 
 ## Credits
-
-Adapted from [mattpocock/skills](https://github.com/mattpocock/skills), used under the MIT License, then modified.
+used under the MIT License, then modified.
 
 This repo is MIT licensed — see [LICENSE](./LICENSE), and [NOTICE](./NOTICE) for upstream copyright.

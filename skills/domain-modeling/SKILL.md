@@ -21,23 +21,30 @@ Most repos have a single context:
 └── src/
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives — the directory names below are one repo's choice, not a convention to expect:
 
 ```
 /
-├── CONTEXT-MAP.md
+├── CONTEXT-MAP.md                    ← the index; the only source of truth for paths
 ├── docs/
 │   └── adr/                          ← system-wide decisions
-├── src/
+├── packages/
 │   ├── ordering/
 │   │   ├── CONTEXT.md
 │   │   └── docs/adr/                 ← context-specific decisions
 │   └── billing/
 │       ├── CONTEXT.md
 │       └── docs/adr/
+└── apps/
+    └── admin-web/
+        └── CONTEXT.md
 ```
 
+**Never guess a context's path.** Contexts sit wherever the repo puts them — `packages/*`, `apps/*`, `services/*`, `libs/*`, `src/*`. When the map exists, its links are the paths; when it doesn't, there's one root `CONTEXT.md` and nothing to resolve.
+
 Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+
+In a multi-context repo, write each resolved term into the `CONTEXT.md` of the context it belongs to, not the root — the root holds the map. Adding a context that isn't on the map yet means adding its line to `CONTEXT-MAP.md` too, or the next skill won't find it.
 
 ## During the session
 

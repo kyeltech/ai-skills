@@ -23,11 +23,13 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `git remote -v` and `.git/config` — is this a GitHub repo? Which one?
 - `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either?
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
-- `docs/adr/` and any `src/*/docs/adr/` directories
+- `docs/adr/`, and any nested `*/docs/adr/` directories (they sit wherever the repo's units live — `packages/*`, `apps/*`, `services/*`, `libs/*`, `src/*`)
 - `docs/agents/` — does this skill's prior output already exist?
 - `.scratch/` — sign that a local-markdown issue tracker convention is already in use
 - Is the `triage` skill installed? (a `triage` skill folder alongside this one, or `triage` in your available skills.) This decides whether Section B runs at all.
-- Monorepo signals — a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. Present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
+- Monorepo signals — a workspace manifest (`pnpm-workspace.yaml`, a `workspaces` field in `package.json`, `nx.json`, `turbo.json`, `lerna.json`, a Cargo/Go workspace, `settings.gradle` with multiple `include`s), or several sibling directories each carrying their own manifest and source tree (`packages/*`, `apps/*`, `services/*`, `libs/*`). Present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
+
+  If you find them, note the **actual** directory shape — you'll need the real paths for Section C, and they are whatever this repo chose, not a convention.
 
 ### 2. Present findings and ask
 
@@ -59,6 +61,8 @@ The defaults are the five canonical roles, each label string equal to its name: 
 **Section C — Domain docs.** Default to **single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. This fits almost every repo; write it without asking.
 
 Offer **multi-context** — a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files — only when exploration found monorepo signals. Then confirm which layout they want.
+
+On multi-context, write `CONTEXT-MAP.md` with a line per context using the **real paths you found in exploration**. A context is a unit of domain language, not a build unit — don't assume one package equals one context; propose the grouping you inferred and let the user correct it. Don't create the per-context `CONTEXT.md` files here: they're created lazily by `/domain-modeling` when the first term in that context is resolved, so the map may legitimately point at files that don't exist yet.
 
 ### 3. Confirm and edit
 

@@ -7,7 +7,7 @@ description: Test-driven development. Use when the user wants to build features 
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every section applies on every cycle — consult them before and during the loop, not after.
 
-When exploring the codebase, read `CONTEXT.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
+When exploring the codebase, read the project's domain glossary so test names and interface vocabulary match its language: `CONTEXT.md` at the repo root, or — when the root holds a `CONTEXT-MAP.md` instead — the map, then the `CONTEXT.md` of the context you're testing in. Its vocabulary wins over any other context's; a term defined in two contexts means two different things, and the test should speak the local one. Respect ADRs in the area too: root `docs/adr/` plus any `docs/adr/` beside that context's `CONTEXT.md`. If none of it exists, proceed silently.
 
 ## What a good test is
 

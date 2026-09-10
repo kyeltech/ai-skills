@@ -11,7 +11,7 @@ Surface architectural friction and propose **deepening opportunities** — refac
 This command is _informed_ by the project's domain model and built on a shared design vocabulary:
 
 - Run the `/codebase-design` skill for the architecture vocabulary (**module**, **interface**, **depth**, **seam**, **adapter**, **leverage**, **locality**) and its principles (the deletion test, "the interface is the test surface", "one adapter = hypothetical seam, two = real"). Use these terms exactly in every suggestion — don't drift into "component," "service," "API," or "boundary."
-- The domain language in `CONTEXT.md` gives names to good seams; ADRs in `docs/adr/` record decisions this command should not re-litigate.
+- The project's domain language gives names to good seams; ADRs record decisions this command should not re-litigate. Resolve both before you scan: `CONTEXT.md` at the repo root, or — when the root holds a `CONTEXT-MAP.md` instead — the map, then the `CONTEXT.md` of each context in the area you scoped to. ADRs likewise: root `docs/adr/` for system-wide decisions, plus any `docs/adr/` beside a context's own `CONTEXT.md`.
 
 ## Process
 
@@ -20,9 +20,10 @@ This command is _informed_ by the project's domain model and built on a shared d
 **Scope before you scan — YAGNI.** Deepening a module pays off by making future changes to it easier, so put extra weight on the parts of the codebase that have recently changed. Decide *where* to look before you look:
 
 - If the user named a direction — a module, a subsystem, a pain point — take it, and skip the inference below.
-- Otherwise, walk back a good stretch of the commit history (`git log --oneline`) to find the codebase's hot spots — the files and areas that keep coming up — and let those paths pull your attention first. If the changes are scattered with no clear hot spot, widen the net.
+- Otherwise, walk back a good stretch of the commit history (`git log --oneline`) to find the codebase's hot spots — the files and areas that keep coming up — and let those paths pull your attention first.
+- If the changes are scattered with no clear hot spot, widen the net — **but only up to one context's worth of code.** In a multi-context repo (root `CONTEXT-MAP.md`), rank the contexts by how much recent history landed in each (`git log --oneline -- <context-path>` per context, paths from the map) and scan the top one or two. A scan spanning every context reads as breadth but lands as noise: it finds shallow modules nobody is changing, and the report gets too long to act on. Say which contexts you picked and why, so the user can redirect in a word.
 
-Read the project's domain glossary (`CONTEXT.md`) and any ADRs in the area you're touching first.
+Read the domain glossary and ADRs for the scope you just picked before you scan, resolved per the rules above.
 
 Then use the Agent tool with `subagent_type=Explore` to walk the codebase. Don't follow rigid heuristics — explore organically and note where you experience friction:
 
@@ -51,7 +52,7 @@ For each candidate, render a card with:
 
 End the report with a **Top recommendation** section: which candidate you'd tackle first and why.
 
-**Use CONTEXT.md vocabulary for the domain, and the `/codebase-design` vocabulary for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
+**Use the glossary's vocabulary for the domain, and the `/codebase-design` vocabulary for the architecture.** If the glossary defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service." When a candidate spans two contexts, name which context each side sits in and use each one's own term for its own side — a seam between contexts is exactly where one word means two things.
 
 **ADR conflicts**: if a candidate contradicts an existing ADR, only surface it when the friction is real enough to warrant revisiting the ADR. Mark it clearly in the card (e.g. a warning callout: _"contradicts ADR-0007 — but worth reopening because…"_). Don't list every theoretical refactor an ADR forbids.
 
@@ -65,7 +66,7 @@ Once the user picks a candidate, run the `/grilling` skill to walk the decision 
 
 Side effects happen inline as decisions crystallize — run the `/domain-modeling` skill to keep the domain model current as you go:
 
-- **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md`. Create the file lazily if it doesn't exist.
-- **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
+- **Naming a deepened module after a concept not in the glossary?** Add the term to the `CONTEXT.md` of the context the module lives in — the root file in a single-context repo, the context's own file in a multi-context one. Create the file lazily if it doesn't exist, and add its line to `CONTEXT-MAP.md` if the context isn't on the map yet.
+- **Sharpening a fuzzy term during the conversation?** Update that context's `CONTEXT.md` right there.
 - **User rejects the candidate with a load-bearing reason?** Offer an ADR, framed as: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones.
 - **Want to explore alternative interfaces for the deepened module?** Run the `/codebase-design` skill and use its design-it-twice parallel sub-agent pattern.
