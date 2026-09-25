@@ -1,8 +1,8 @@
 {
-  "name": "pakytech",
+  "name": "kyeltech",
   "owner": {
     "name": "Ezekiel Ayikoe",
-    "url": "https://github.com/PakyTech"
+    "url": "https://github.com/kyeltech"
   },
   "description": "Agent skills for real engineering, as an installable Claude Code plugin.",
   "plugins": [

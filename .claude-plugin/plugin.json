@@ -1,13 +1,13 @@
 {
   "name": "ai-skills",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Agent skills for real engineering: grilling, spec/ticket flows, TDD, code review, domain modelling and more. Small, composable, model-agnostic.",
   "author": {
     "name": "Ezekiel Ayikoe",
-    "url": "https://github.com/PakyTech"
+    "url": "https://github.com/kyeltech"
   },
-  "homepage": "https://github.com/PakyTech/ai-skills",
-  "repository": "https://github.com/PakyTech/ai-skills",
+  "homepage": "https://github.com/kyeltech/ai-skills",
+  "repository": "https://github.com/kyeltech/ai-skills",
   "license": "MIT",
   "keywords": [
     "engineering",

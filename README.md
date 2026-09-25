@@ -16,15 +16,15 @@ Two ways in, two philosophies. **The Claude Code plugin** installs the whole set
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add PakyTech/ai-skills
-claude plugin install ai-skills@pakytech
+claude plugin marketplace add kyeltech/ai-skills
+claude plugin install ai-skills@kyeltech
 ```
 
 Or, from inside a session:
 
 ```
-/plugin marketplace add PakyTech/ai-skills
-/plugin install ai-skills@pakytech
+/plugin marketplace add kyeltech/ai-skills
+/plugin install ai-skills@kyeltech
 ```
 
 The marketplace only needs adding once per machine. After that, `claude plugin update ai-skills` pulls the latest.
@@ -35,7 +35,7 @@ The marketplace only needs adding once per machine. After that, `claude plugin u
 <summary><strong>Codex, Cursor, and other agents</strong></summary>
 
 ```bash
-npx skills@latest add PakyTech/ai-skills
+npx skills@latest add kyeltech/ai-skills
 ```
 
 Pick the skills you want and which coding agents to install them on. **The installer lets you choose which skills to take, so make sure `setup-skills` is one of them** — most of the engineering skills read the config it writes.
@@ -43,7 +43,7 @@ Pick the skills you want and which coding agents to install them on. **The insta
 To take a single skill:
 
 ```bash
-npx skills@latest add PakyTech/ai-skills --skill=tdd
+npx skills@latest add kyeltech/ai-skills --skill=tdd
 ```
 
 </details>
@@ -54,7 +54,7 @@ npx skills@latest add PakyTech/ai-skills --skill=tdd
 Use the same installer on any agent, including Claude Code:
 
 ```bash
-npx skills@latest add PakyTech/ai-skills
+npx skills@latest add kyeltech/ai-skills
 ```
 
 It writes the skills into your repo as ordinary files you own and can edit. Nothing updates behind your back — pull the latest when you want it:
@@ -74,7 +74,7 @@ Copilot reads skills from fixed paths rather than an installer. Copy the folders
 - **Personal, all projects** → `~/.copilot/skills/<skill-name>/SKILL.md`
 
 ```bash
-git clone https://github.com/PakyTech/ai-skills.git /tmp/ai-skills
+git clone https://github.com/kyeltech/ai-skills.git /tmp/ai-skills
 mkdir -p .github/skills
 cp -R /tmp/ai-skills/skills/* .github/skills/
 ```
